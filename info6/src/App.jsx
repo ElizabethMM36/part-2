@@ -10,8 +10,16 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault(); // Prevent page reload on form submit
-    const newPerson = { name: newName };
 
+    // Check if name already exists
+    const nameExists = persons.some(person => person.name === newName);
+    
+    if (nameExists) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
+
+    const newPerson = { name: newName };
     setPersons(persons.concat(newPerson)); // Add new person to list
     setNewName(''); // Clear input field after submission
   };
